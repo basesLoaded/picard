@@ -33,7 +33,7 @@ import java.util.Arrays;
  * by MarkDuplicatesWithMateCigarTester (see getTester).
  * @author nhomer@broadinstitute.org
  */
-public class MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicatesCommandLineProgramTest {
+public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicatesCommandLineProgramTest {
     protected MarkDuplicatesSetSizeHistogramTester getTester() {
         return new MarkDuplicatesSetSizeHistogramTester();
     }
