@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2014 The Broad Institute
+ * Copyright (c) 2018 The Broad Institute
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 /**
- * This class defines the individual test cases to run. The actual running of the test is done
- * by MarkDuplicatesWithMateCigarTester (see getTester).
+ * This class defines the individual test cases to check the duplicate set histograms. 
  * @author hogstrom@broadinstitute.org
  */
 public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicatesCommandLineProgramTest {
@@ -104,7 +103,7 @@ public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicate
 
         // Add non-duplicate read
         tester.addMatePair("RUNID:1:1:15993:13375", 1, 485255, 485255, false, false, false, false, "43M2S", "43M2S", false, true, false, false, false, DEFAULT_BASE_QUALITY);
-        tester.expectedSetSizeMap.put(Arrays.asList("all_sets","1.0"),1.0);
+        tester.expectedSetSizeMap.put(Arrays.asList("all_sets", "1.0"), 1.0);
 
         tester.runTest();
     }
