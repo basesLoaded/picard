@@ -351,7 +351,7 @@ public abstract class AbstractMarkDuplicatesCommandLineProgram extends AbstractO
                                                     final Histogram<Double> duplicatesCountHist,
                                                     final Histogram<Double> nonOpticalDuplicatesCountHist,
                                                     final Histogram<Double> opticalDuplicatesCountHist) {
-        duplicatesCountHist.increment(new Double(listSize));
+        duplicatesCountHist.increment((double)(listSize));
         if ( (listSize - optDupCnt) > 0) {
             nonOpticalDuplicatesCountHist.increment(new Double(listSize - optDupCnt));
         }

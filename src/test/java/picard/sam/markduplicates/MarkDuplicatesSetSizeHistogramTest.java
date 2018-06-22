@@ -31,7 +31,7 @@ import java.util.Arrays;
 /**
  * This class defines the individual test cases to run. The actual running of the test is done
  * by MarkDuplicatesWithMateCigarTester (see getTester).
- * @author nhomer@broadinstitute.org
+ * @author hogstrom@broadinstitute.org
  */
 public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicatesCommandLineProgramTest {
     protected MarkDuplicatesSetSizeHistogramTester getTester() {
@@ -40,7 +40,10 @@ public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicate
 
     @Test
     public void TestSingleSet() {
-        final MarkDuplicatesSetSizeHistogramTester tester = getTester();
+        // This tests checks that if I add two read pairs with the same alignment start, a duplicate
+	// set size entry of 2 is put into the histogram. The pair is an optical dup, so a 2 entry for
+	// the 'optical_sets' should also be marked
+    	final MarkDuplicatesSetSizeHistogramTester tester = getTester();
         tester.setExpectedOpticalDuplicate(1);
         String representativeReadName = "RUNID:1:1:16020:13352";
         tester.addMatePair(representativeReadName, 1, 485253, 485253, false, false, false, false, "45M", "45M", false, true, false, false, false, DEFAULT_BASE_QUALITY);
@@ -53,7 +56,9 @@ public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicate
 
     @Test
     public void testOpticalAndNonOpticalSet() {
-        final MarkDuplicatesSetSizeHistogramTester tester = getTester();
+        // This tests checks that if I have two optical dups and one non-optical in the same dup set that the correct histogram entries
+	// are specified
+	final MarkDuplicatesSetSizeHistogramTester tester = getTester();
         tester.setExpectedOpticalDuplicate(2);
         String representativeReadName = "RUNID:1:1:16020:13352";
         tester.addMatePair(representativeReadName, 1, 485253, 485253, false, false, false, false, "45M", "45M", false, true, false, false, false, DEFAULT_BASE_QUALITY);
@@ -68,7 +73,8 @@ public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicate
 
     @Test
     public void testSingleton() {
-        final MarkDuplicatesSetSizeHistogramTester tester = getTester();
+        // This tests checks if having a read pair that is not duplicated, the correct histogram entry is updated
+	final MarkDuplicatesSetSizeHistogramTester tester = getTester();
         tester.setExpectedOpticalDuplicate(0);
         // Add non-duplicate read
         tester.addMatePair("RUNID:1:1:15993:13375", 1, 485255, 485255, false, false, false, false, "43M2S", "43M2S", false, true, false, false, false, DEFAULT_BASE_QUALITY);
@@ -78,7 +84,8 @@ public class    MarkDuplicatesSetSizeHistogramTest extends AbstractMarkDuplicate
 
     @Test
     public void testMultiRepresentativeReadTags() {
-        final MarkDuplicatesSetSizeHistogramTester tester = getTester();
+        // This tests checks multiple different duplicate sets of varying sizes
+	final MarkDuplicatesSetSizeHistogramTester tester = getTester();
         tester.setExpectedOpticalDuplicate(3);
         // Duplicate set: size 2 - all optical
         String representativeReadName1 = "RUNID:1:1:16020:13352";
